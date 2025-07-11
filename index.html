@@ -5,221 +5,359 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Coffee</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fbe3c4;
+      color: #333;
       scroll-behavior: smooth;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #fbe3c4;
-      color: #333;
+    header {
+      background: #6f4e37;
+      color: white;
+      padding: 10px 20px;
     }
 
-    .main-layout {
+    .navbar {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      background-color: #f1c28f;
-      padding: 40px 20px;
-      justify-content: center;
-      align-items: flex-start;
     }
 
-    .left-content {
-      max-width: 400px;
-      flex: 1;
+    .logo img {
+      height: 80px;
     }
 
-    .logo-area {
-      text-align: center;
-      margin-bottom: 20px;
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
-    .logo-area img {
-      width: 150px;
-      margin-bottom: 10px;
-    }
-
-    .logo-area p {
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .grid-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .nav-links {
+      display: flex;
       gap: 15px;
-      margin-top: 30px;
-      padding: 0 10px;
+      flex-wrap: wrap;
     }
 
-    .grid-buttons .full-width {
-      grid-column: 1 / 3;
-      text-align: center;
-    }
-
-    .grid-buttons a {
-      display: inline-block;
-      padding: 15px 25px;
-      background-color: #6f4e37;
+    .nav-links a {
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      font-size: 16px;
-      text-align: center;
+      font-weight: bold;
+      padding: 8px 10px;
       transition: background 0.3s;
     }
 
-    .grid-buttons a:hover {
-      background-color: #8a5d46;
-    }
-
-    .video-area {
-  width: 100%;
-  max-width: 392px;
-  flex-shrink: 0;
-}
-
-.video-area video {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-/* ✅ For mobile: make video smaller */
-@media (max-width: 768px) {
-  .video-area {
-    max-width: 300px; /* Adjust to smaller width for phone */
-  }
-
-  .video-area video {
-    height: auto;
-  }
-}
-
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      text-align: center;
-      color: #6f4e37;
-      margin-bottom: 15px;
-    }
-
-    section p {
-      text-align: center;
-      font-size: 17px;
-    }
-
-    footer {
-      background-color: #e3363e;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    footer h2 {
-      margin-bottom: 15px;
-    }
-
-    footer p {
-      margin: 6px 0;
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
     }
 
     @media (max-width: 768px) {
-      .main-layout {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: center;
+        width: 100%;
+        margin-top: 10px;
       }
 
-      .grid-buttons {
-        grid-template-columns: 1fr;
+      .nav-links.show {
+        display: flex;
       }
 
-      .grid-buttons .full-width {
-        grid-column: 1 / 2;
+      .nav-links a {
+        padding: 10px 0;
+      }
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 700px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      touch-action: pan-y;
+    }
+
+    .slide-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .slide-item img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      margin: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #6f4e37;
+      padding: 0 10px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      font-size: 30px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    footer {
+      background: #6f4e37;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .slide-item img {
+        max-width: 90%;
+        aspect-ratio: 4/3;
       }
 
-      .video-area {
-        margin-top: 30px;
+      .caption {
+        font-size: 14px;
+      }
+
+      .hero {
+        height: 70vh;
+      }
+
+      .bg-video {
+        height: auto;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- MAIN LAYOUT (Logo + Buttons on Left, Video on Right) -->
-  <div class="main-layout">
-    <div class="left-content">
-      <div class="logo-area">
-        <img src="The Coffee Logo.png" alt="The Coffee">
-        <p>Brewed for the Filipino taste — One cup at a time.</p>
-      </div>
-
-      <div class="grid-buttons">
-        <a href="#about">About Us</a>
-        <a href="#menu">View Menu</a>
-        <a href="#events" class="full-width">Check Our Events</a>
-        <a href="#franchise" class="full-width">Inquire About Franchise</a>
-        <a href="#package" class="full-width">Franchise Package</a>
-        <a href="#franchisees" class="full-width">Franchisees</a>
-        <a href="#footer" class="full-width">Contact Us</a>
-      </div>
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <img src="The Coffee Logo.png" alt="The Coffee">
     </div>
-
-    <div class="video-area">
-      <video controls autoplay muted loop>
-        <source src="Video.mp4" type="video/mp4">
-      </video>
-    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="nav-links" id="navMenu">
+      <a href="#about">About Us</a>
+      <a href="#menu">View Menu</a>
+      <a href="#events">Check Our Events</a>
+      <a href="#inquire">Inquire About Franchisees</a>
+      <a href="#package">Franchise Package</a>
+      <a href="#franchisees">Franchisees</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
   </div>
+</header>
 
-  <!-- CONTENT SECTIONS -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We’re more than just coffee — we’re a community that celebrates Filipino taste.</p>
-  </section>
+<section class="hero" id="">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="Video.mp4" type="video/mp4">
+  </video>
+</section>
 
-  <section id="menu">
-    <h2>Our Menu</h2>
-    <p>We offer handcrafted beverages and local favorites. Menu image coming soon.</p>
-  </section>
+<section class="section" id="about">
+  <h2 style="font-style: italic; font-size: 50px; ">About Us</h2>
+  <h3 style="font-style: italic; font-weight: 650; font-size: 25px; color: #6f4e37;">
+    Brewing Comfort with a Global Taste, the Filipino Way
+  </h3>
+  <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
+ ">The Coffee PH is a proudly homegrown beverage brand that blends local Filipino flavors with international coffeehouse quality — all at prices that students and everyday customers can afford.</p>
+</section>
 
-  <section id="events">
-    <h2>Events</h2>
-    <p>Stay tuned for seasonal events, barista competitions, and more.</p>
-  </section>
+<!-- MENU SECTION with SLIDER -->
+<section class="section" id="menu">
+  <h2>Our Menu</h2>
+  <div class="slider" id="menu-slider">
+    <button class="arrow left" onclick="moveSlide(-1, 'menu')">&#10094;</button>
+    <div class="slides menu-slides">
+      <div class="slide-item">
+        <img src="iced coffee.jpg" alt="Iced Coffee">
+        <p class="caption">❄️ Iced Coffee – Chill Out with Every Sip</p>
+      </div>
+      <div class="slide-item">
+        <img src="hot coffee.jpg" alt="Hot Coffee">
+        <p class="caption">☕ Hot Coffee – Warm Your Day with Every Sip</p>
+      </div>
+      <div class="slide-item">
+        <img src="MILK TEA MENU.png" alt="Milk Tea">
+        <p class="caption">🧋 Milk Tea Series – Creamy Goodness in Every Sip</p>
+      </div>
+    </div>
+    <button class="arrow right" onclick="moveSlide(1, 'menu')">&#10095;</button>
+  </div>
+</section>
 
-  <section id="franchise">
-    <h2>Franchise Info</h2>
-    <p>Ready to start your own branch? We’ve made franchising affordable and easy.</p>
-  </section>
+<section class="section" id="events">
+  <h2>Check Our Events</h2>
+  <p>From weekend milk tea parties to pop-up booths, check out what’s brewing in Sweet Sip’s world!</p>
+</section>
 
-  <section id="package">
-    <h2>Franchise Package</h2>
-    <p>We offer flexible packages for different goals and budgets.</p>
-  </section>
+<section class="section" id="inquire">
+  <h2>Inquire About Franchisees</h2>
+  <p>We’re excited to grow with passionate partners! Reach out to explore how you can start your own Sweet Sip branch.</p>
+</section>
 
-  <section id="franchisees">
-    <h2>Our Franchisees</h2>
-    <p>Meet some of our successful partners across the Philippines.</p>
-  </section>
+<section class="section" id="package">
+  <h2>Franchise Package</h2>
+  <p>We offer affordable and complete packages to help you start smoothly.</p>
+</section>
 
-  <!-- FOOTER / CONTACT US -->
-  <footer id="footer">
-    <h2>Contact Us</h2>
-    <p>📍 Location: Your Business Address</p>
-    <p>✉️ Email: hello@thecoffeeph.com</p>
-    <p>📞 Phone: 123-456-7890</p>
-  </footer>
+<!-- FRANCHISEES SECTION with SLIDER -->
+<section class="section" id="franchisees">
+  <h2>Our Franchisees</h2>
+  <div class="slider" id="franchise-slider">
+    <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
+    <div class="slides franchise-slides">
+      <div class="slide-item">
+        <img src="franchise1.jpg" alt="Franchise 1">
+        <p class="caption">📍 Taguig Branch – Growing Fast!</p>
+      </div>
+      <div class="slide-item">
+        <img src="franchise2.jpg" alt="Franchise 2">
+        <p class="caption">📍 Cebu Branch – Full House Daily!</p>
+      </div>
+      <div class="slide-item">
+        <img src="franchise3.jpg" alt="Franchise 3">
+        <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
+      </div>
+    </div>
+    <button class="arrow right" onclick="moveSlide(1, 'franchise')">&#10095;</button>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p>📍123 Milk Street, Milkteaville</p>
+  <p>📞 0912-345-6789</p>
+  <p>📩 hello@sweetsipmilktea.com</p>
+</section>
+
+<footer>
+  &copy; 2025 Sweet Sip Milk Tea. All rights reserved.
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Toggle dropdown menu on mobile
+  function toggleMenu() {
+    const menu = document.getElementById("navMenu");
+    menu.classList.toggle("show");
+  }
+
+  // Slider logic
+  let slideIndex = {
+    menu: 0,
+    franchise: 0
+  };
+
+  function moveSlide(n, section) {
+    const slides = document.querySelectorAll(`.${section}-slides .slide-item`);
+    slideIndex[section] = (slideIndex[section] + n + slides.length) % slides.length;
+    document.querySelector(`.${section}-slides`).style.transform = `translateX(-${slideIndex[section] * 100}%)`;
+  }
+
+  ['menu', 'franchise'].forEach(section => {
+    const slider = document.querySelector(`#${section}-slider .slides`);
+    let startX = 0;
+
+    slider.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) moveSlide(1, section);
+      if (startX - endX < -50) moveSlide(-1, section);
+    });
+  });
+
+  moveSlide(0, 'menu');
+  moveSlide(0, 'franchise');
+</script>
 
 </body>
 </html>
