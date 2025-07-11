@@ -22,19 +22,16 @@
 
     .main-layout {
       display: flex;
-      flex-direction: row;
+      flex-wrap: wrap;
       background-color: #f1c28f;
       padding: 40px 20px;
       justify-content: center;
       align-items: flex-start;
-      gap: 20px;
-      flex-wrap: nowrap;
     }
 
     .left-content {
       max-width: 400px;
-      width: 100%;
-      flex-shrink: 0;
+      flex: 1;
     }
 
     .logo-area {
@@ -82,9 +79,9 @@
     }
 
     .video-area {
-      width: 100%;
+      flex: 1;
       max-width: 392px;
-      flex-shrink: 0;
+      padding: 0 20px;
     }
 
     .video-area video {
@@ -126,23 +123,22 @@
       margin: 6px 0;
     }
 
-    /* 👇 IMPORTANT: Prevent column stack on mobile */
     @media (max-width: 768px) {
       .main-layout {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        align-items: flex-start;
-      }
-
-      .left-content, .video-area {
-        max-width: 100%;
-        flex: 1 1 300px;
+        flex-direction: column;
+        align-items: center;
       }
 
       .grid-buttons {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+      }
+
+      .grid-buttons .full-width {
+        grid-column: 1 / 2;
+      }
+
+      .video-area {
+        margin-top: 30px;
       }
     }
   </style>
