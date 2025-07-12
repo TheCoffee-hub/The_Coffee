@@ -3,27 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="The Coffee PH - A homegrown Filipino beverage brand blending global taste with local flavors."/>
+  <meta property="og:title" content="The Coffee PH">
+  <meta property="og:description" content="Enjoy your favorite drinks with The Coffee PH!">
+  <meta property="og:image" content="https://yourwebsite.com/preview.jpg">
+  <meta name="theme-color" content="#c78752">
   <title>The Coffee</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      //background: #fbe3c4;
-      //background: linear-gradient(to right, #5c3a21, #7b5037);
       background: #fbe3c4 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       color: #333;
       scroll-behavior: smooth;
     }
 
     header {
-      //background: #d2b48c;
+      position: sticky;
+      top: 0;
       background: #c78752;
       color: black;
       padding: 10px 20px;
-    }
-
-    header {
-    //border-bottom: 4px solid #d2b48c;
+      z-index: 999;
     }
 
     .navbar {
@@ -63,27 +67,6 @@
     .nav-links a:hover {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 10px 0;
-      }
     }
 
     .hero {
@@ -159,6 +142,11 @@
       max-width: 450px;
       display: block;
       margin: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .slide-item img:hover {
+      transform: scale(1.05);
     }
 
     .caption {
@@ -196,42 +184,82 @@
       padding: 20px;
     }
 
-    @media (max-width: 768px) {
-    .slide-item img {
+    .back-to-top {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background: #6f4e37;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .preloader {
+      position: fixed;
       width: 100%;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-  
+      height: 100%;
+      background: #fbe3c4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
 
-      .caption {
-        font-size: 14px;
+    .loader {
+      border: 5px solid #ddd;
+      border-top: 5px solid #6f4e37;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
       }
 
-      .hero {
-        height: 100vh;
-        overflow: hidden;
-        position: relative
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
       }
 
-      .bg-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%);
-        object-fit: cover;
-        z-index: -1;
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+      }
+
+      .slide-item img {
+        width: 100%;
+        max-width: 100%;
+        object-fit: contain;
       }
     }
   </style>
 </head>
 <body>
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
 
-<header>
+  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8679;</button>
+
+  <header>
   <div class="navbar">
     <div class="logo">
       <img src="The Coffee Logo.png" alt="The Coffee">
@@ -255,7 +283,7 @@
   </video>
 </section>
 
-<section class="section" id="about">
+<section class="section" id="about" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">About Us</h2>
   <h3 style="font-style: italic; font-weight: 650; font-size: 25px; color: #6f4e37;">
     Brewing Comfort with a Global Taste, the Filipino Way
@@ -265,8 +293,8 @@
 </section>
 
 <!-- MENU SECTION with SLIDER -->
-<section class="section" id="menu">
-  <h2 style="font-style: italic; font-size: 50px; ">Our Menu</h2>
+<section class="section" id="menu" data-aos="fade-up">
+  <h2 style="font-style: italic; font-size: 50px; ">Drink Series</h2>
   <div class="slider" id="menu-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'menu')">&#10094;</button>
     <div class="slides menu-slides">
@@ -291,13 +319,32 @@
         <p class="caption">🧋 Fruit Milk & Latte – Creamy Goodness in Every Sip</p>
       </div>
       <div class="slide-item">
+        <img src="CHEESECAKE MENU.png" alt="Fruit Milk & Latte">
+        <p class="caption">🧋 Fruit Milk & Latte – Creamy Goodness in Every Sip</p>
+      </div>
+      <div class="slide-item">
         <img src="STICKY MILK MENU.png" alt="Sticky Milk">
+        <p class="caption">🧋 Sticky Milk – Creamy Goodness in Every Sip</p>
+      </div>
+      <div class="slide-item">
+        <img src="FRAPPE MENU.png" alt="Sticky Milk">
         <p class="caption">🧋 Sticky Milk – Creamy Goodness in Every Sip</p>
       </div>
       <div class="slide-item">
         <img src="SODA MENU.png" alt="Soda">
         <p class="caption">🧋 Soda – Creamy Goodness in Every Sip</p>
       </div>
+    </div>
+    <button class="arrow right" onclick="moveSlide(1, 'menu')">&#10095;</button>
+  </div>
+</section>
+
+<!-- NEW SLIDER SECTION -->
+<section class="section" id="featured" data-aos="fade-up">
+  <h2 style="font-style: italic; font-size: 50px; ">Food Series</h2>
+  <div class="slider" id="featured-slider">
+    <button class="arrow left" onclick="moveSlide(-1, 'featured')">&#10094;</button>
+    <div class="slides featured-slides">
       <div class="slide-item">
         <img src="CROFFLE SANDWICH MENU.png" alt="Croffle Sandwich">
         <p class="caption">🧋 Milk Tea Series – Creamy Goodness in Every Sip</p>
@@ -310,45 +357,55 @@
         <img src="FRIES MENU.png" alt="Fries">
         <p class="caption">🧋 Fries – Creamy Goodness in Every Sip</p>
       </div>
+      <div class="slide-item">
+        <img src="CROFFLES MENU.png" alt="Fries">
+        <p class="caption">🧋 Fries – Creamy Goodness in Every Sip</p>
+      </div>
     </div>
-    <button class="arrow right" onclick="moveSlide(1, 'menu')">&#10095;</button>
+    <button class="arrow right" onclick="moveSlide(1, 'featured')">&#10095;</button>
   </div>
 </section>
 
-<section class="section" id="events">
-  <h2 style="font-style: italic; font-size: 50px; ">Check Our Events</h2>
+<section class="section" id="events" data-aos="fade-up">
+  <h2 style="font-style: italic; font-size: 50px; ">Our Events</h2>
   <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
  ">From weekend milk tea parties to pop-up booths, check out what’s brewing in Sweet Sip’s world!</p>
 </section>
 
-<section class="section" id="inquire">
+<section class="section" id="inquire" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">Inquire About Franchisees</h2>
   <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
  ">We’re excited to grow with passionate partners! Reach out to explore how you can start your own Sweet Sip branch.</p>
 </section>
 
-<section class="section" id="package">
+<section class="section" id="package" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">Franchise Package</h2>
   <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
  ">We offer affordable and complete packages to help you start smoothly.</p>
 </section>
 
 <!-- FRANCHISEES SECTION with SLIDER -->
-<section class="section" id="franchisees">
+<section class="section" id="franchisees" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">Our Franchisees</h2>
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
       <div class="slide-item">
-        <img src="franchise1.jpg" alt="Franchise 1">
-        <p class="caption">📍 Taguig Branch – Growing Fast!</p>
+        <a href="https://www.facebook.com/YOUR_PAGE_TAGUIG" target="_blank">
+          <img src="SAMPLE.jpg" alt="Franchise 1">
+        </a>
+        <p class="caption">📍 Muñoz Branch – Growing Fast!</p>
       </div>
       <div class="slide-item">
-        <img src="franchise2.jpg" alt="Franchise 2">
+        <a href="https://www.facebook.com/YOUR_PAGE_CEBU" target="_blank">
+          <img src="franchise2.jpg" alt="Franchise 2">
+        </a>
         <p class="caption">📍 Cebu Branch – Full House Daily!</p>
       </div>
       <div class="slide-item">
-        <img src="franchise3.jpg" alt="Franchise 3">
+        <a href="https://www.facebook.com/YOUR_PAGE_DAVAO" target="_blank">
+          <img src="franchise3.jpg" alt="Franchise 3">
+        </a>
         <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
       </div>
     </div>
@@ -356,16 +413,13 @@
   </div>
 </section>
 
-<section class="section" id="contact">
+
+<section class="section" id="contact" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">Contact Us</h2>
   <p>📍123 Milk Street, Milkteaville</p>
   <p>📞 0912-345-6789</p>
   <p>📩 hello@sweetsipmilktea.com</p>
 </section>
-
-<footer>
-  &copy;2025 The Coffee. All rights reserved.
-</footer>
 
 <!-- Scripts -->
 <script>
@@ -378,7 +432,8 @@
   // Slider logic
   let slideIndex = {
     menu: 0,
-    franchise: 0
+    franchise: 0,
+    featured: 0
   };
 
   function moveSlide(n, section) {
@@ -387,7 +442,7 @@
     document.querySelector(`.${section}-slides`).style.transform = `translateX(-${slideIndex[section] * 100}%)`;
   }
 
-  ['menu', 'franchise'].forEach(section => {
+  ['menu', 'franchise', 'featured'].forEach(section => {
     const slider = document.querySelector(`#${section}-slider .slides`);
     let startX = 0;
 
@@ -404,7 +459,62 @@
 
   moveSlide(0, 'menu');
   moveSlide(0, 'franchise');
-</script>
+  moveSlide(0, 'featured');
+</script>->
 
+  <footer>
+    &copy;2024 The Coffee. All rights reserved.
+  </footer>
+
+  <!-- Floating Messenger Button -->
+<a href="https://m.me/TheCoffeePHOfficial" target="_blank" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0084FF;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+  z-index: 999;
+">
+  💬
+</a>
+
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    window.addEventListener('load', () => {
+      document.querySelector('.preloader').style.display = 'none';
+    });
+
+    window.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+    }
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init();
+</script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
+
+<div class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="YOUR_PAGE_ID"
+  theme_color="#c78752"
+  logged_in_greeting="Hi! How can we help you?"
+  logged_out_greeting="Hi! How can we help you?">
+</div>
 </body>
 </html>
