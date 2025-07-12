@@ -30,6 +30,20 @@
       z-index: 999;
     }
 
+    .nav-links a:active {
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+    }
+
+      .nav-links a.active {
+    background-color: #fff;
+    color: #c78752;
+    border-radius: 5px;
+    }
+
+
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -184,21 +198,6 @@
       padding: 20px;
     }
 
-    .back-to-top {
-      position: fixed;
-      bottom: 70px;
-      right: 20px;
-      background: #6f4e37;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: none;
-    }
-
     .preloader {
       position: fixed;
       width: 100%;
@@ -257,8 +256,6 @@
     <div class="loader"></div>
   </div>
 
-  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8679;</button>
-
   <header>
   <div class="navbar">
     <div class="logo">
@@ -277,7 +274,7 @@
   </div>
 </header>
 
-<section class="hero" id="">
+<section class="hero" id="hero-video">
   <video autoplay muted loop playsinline class="bg-video">
     <source src="Video.mp4" type="video/mp4">
   </video>
@@ -466,7 +463,7 @@
     &copy;2024 The Coffee. All rights reserved.
   </footer>
 
- <a href="https://m.me/TheCoffeemain" target="_blank" style="
+ <a href="https://m.me/TheCoffeemain" id="messenger-button" target="_blank" style="display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -477,7 +474,9 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   text-decoration: none;
   z-index: 999;
-  display: flex;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
   align-items: center;
   gap: 8px;
 ">
@@ -486,6 +485,36 @@
   </svg>
   <span style="color:white; font-weight:bold;">Message Us</span>
 </a>
+  
+  <script>
+  AOS.init();
+  </script>
+
+  <script>
+  const messengerButton = document.getElementById('messenger-button');
+  const heroSection = document.getElementById('hero-video');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        messengerButton.style.display = 'flex';
+        setTimeout(() => {
+          messengerButton.style.opacity = '1';
+        }, 10); // small delay for transition
+      } else {
+        messengerButton.style.opacity = '0';
+        setTimeout(() => {
+          messengerButton.style.display = 'none';
+        }, 500); // match transition duration
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  observer.observe(heroSection);
+  </script>
+
 
 
 
@@ -496,11 +525,6 @@
 
     window.addEventListener('load', () => {
       document.querySelector('.preloader').style.display = 'none';
-    });
-
-    window.addEventListener('scroll', () => {
-      const btn = document.querySelector('.back-to-top');
-      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
     function toggleMenu() {
@@ -518,8 +542,6 @@
     });
   });
 
-
-
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
@@ -536,5 +558,29 @@
   logged_in_greeting="Hi! How can we help you?"
   logged_out_greeting="Hi! How can we help you?">
 </div>
+
+<script>
+  // Highlight active link while scrolling
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    let current = "";
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 80) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === "#" + current) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
