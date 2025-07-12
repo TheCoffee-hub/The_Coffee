@@ -474,7 +474,6 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   text-decoration: none;
   z-index: 999;
-  display: none;
   opacity: 0;
   transition: opacity 0.5s ease;
   align-items: center;
@@ -492,27 +491,29 @@
 
   <script>
   const messengerButton = document.getElementById('messenger-button');
-  const heroSection = document.getElementById('hero-video');
+const aboutSection = document.getElementById('about');
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        messengerButton.style.display = 'flex';
-        setTimeout(() => {
-          messengerButton.style.opacity = '1';
-        }, 10); // small delay for transition
-      } else {
-        messengerButton.style.opacity = '0';
-        setTimeout(() => {
-          messengerButton.style.display = 'none';
-        }, 500); // match transition duration
-      }
-    });
-  }, {
-    threshold: 0.1
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Section is visible - show the button
+      messengerButton.style.display = 'flex';
+      setTimeout(() => {
+        messengerButton.style.opacity = '1';
+      }, 10);
+    } else {
+      // Section not visible - hide the button
+      messengerButton.style.opacity = '0';
+      setTimeout(() => {
+        messengerButton.style.display = 'none';
+      }, 500);
+    }
   });
+}, {
+  threshold: 0.1
+});
 
-  observer.observe(heroSection);
+observer.observe(aboutSection);
   </script>
 
 
