@@ -47,8 +47,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      background: #c78752;
       flex-wrap: wrap;
     }
 
@@ -79,20 +77,18 @@
       display: flex;
       gap: 15px;
       align-items: center;
-      flex: 1;
-      justify-content: flex-end;
+      margin-left: auto;
     }
-
     .nav-links a {
       color: black;
       text-decoration: none;
       font-weight: bold;
-      padding: 8px 12px;
+      padding: 8px 10px;
       transition: background 0.3s;
     }
 
     .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
     }
 
@@ -266,14 +262,15 @@
         flex-direction: column;
         width: 100%;
         margin-top: 10px;
-        background-color: #c78752;        
+        background-color: #c78752;    
+        padding: 10px;    
       }
 
-      .nav-links.show {
+      .nav-links.show { 
         display: flex;
       }
 
-      .menu-toggle {
+       .menu-toggle {
         display: block;
       }
 
@@ -282,10 +279,9 @@
       }
 
       .nav.links a {
-        padding; 10px;
-        text-align: center;
+        padding: 10px 0;
       }
-    }
+  
       .slide-item {
         flex: 0 0 80%;
         max-width: 80%;
@@ -331,7 +327,7 @@
       .nav-links a {
         padding: 10px 0;
       }
-    }
+  }
   </style>
 </head>
 <body>
@@ -611,6 +607,7 @@ function filterSlides(section, category) {
 
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
   <script>
     AOS.init();
 
@@ -634,6 +631,7 @@ function filterSlides(section, category) {
   });
 
   </script>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
   AOS.init();
