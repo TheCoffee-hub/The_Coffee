@@ -184,6 +184,7 @@
       font-size: 18px;
       font-weight: bold;
       color: #6f4e37;
+      text-align: center;
     }
 
     .arrow {
@@ -251,13 +252,18 @@
       }
     }
       .slide-item {
-        flex: 0 0 100%;
-        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 0 0 80%;
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 10px;
+        box-sizing: border-box;
         transform: scale(1);
         opacity: 1;
         transition: transform 0.4s ease, opacity 0.4s ease;
-        padding: 0 10px;
-        box-sizing: border-box;
       }
       .slide-item.center {
         transform: scale(1.05);
