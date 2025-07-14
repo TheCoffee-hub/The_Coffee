@@ -139,31 +139,28 @@
     }
 
     .slider {
-      position: relative;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: relative;
       padding: 20px 0;
     }
+
 
     .slider .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
       will-change: transform;
-      gap: 10px;
-      padding: 0 15%;
+      gap: 0;
+      padding: 0;
     }
 
     .slide-item {
-      flex: 0 0 33.3333%;
-      max-width: 33.3333%;
-      margin: 0 auto;
-      transform: scale(0.9);
-      opacity: 0.5;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+      flex: 0 0 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      transform: scale(1);
+      opacity: 1;
+      padding: 0;
     }
-
     .slide-item.center {
       transform: scale(1.1);
       opacity: 1;
@@ -173,20 +170,19 @@
     .slide-item img {
       width: 100%;
       height: auto;
-      max-height: 300px;
+      max-height: 400px;
       object-fit: contain;
       border-radius: 10px;
     }
-
     .slide-item img:hover {
       transform: scale(1.05);
     }
 
     .caption {
       margin-top: 10px;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: bold;
       color: #6f4e37;
-      padding: 0 10px;
     }
 
     .arrow {
@@ -244,26 +240,24 @@
 
     @media (max-width: 768px) {
       .slide-item {
-        flex: 0 0 60%;
-        max-width: 60%;
-        margin: 0 5px;
-        transform: scale(0.8);
-        opacity: 0.5;
+        flex: 0 0 90%;
+        max-width: 90%;
       }
 
     @media (max-width: 768px) {
-      .slider {
-        padding: 20px 0;
+      .slide-item img {
+        max-height: 300px;
       }
-
+    }
       .slide-item {
-        flex: 0 0 80%;
-        max-width: 80%;
-        transform: scale(0.9);
-        opacity: 0.5;
-        transition: transform0.4s ease, opacity 0.4s ease;
+        flex: 0 0 100%;
+        max-width: 100%;
+        transform: scale(1);
+        opacity: 1;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        padding: 0 10px;
+        box-sizing: border-box;
       }
-
       .slide-item.center {
         transform: scale(1.05);
         opacity: 1;
@@ -272,13 +266,18 @@
 
       .slides {
         display: flex;
-        gap: 10px;
-        padding: 0 10%;
         transition: transform 0.5s ease-in-out;
+        gap: 10px;
+        will-change: transform;
       }
 
+
       .slide-item img {
-        max-height: 240px;
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
       }
 
       .nav-links {
@@ -338,7 +337,7 @@
  ">The Coffee PH is a proudly homegrown beverage brand that blends local Filipino flavors with international coffeehouse quality — all at prices that students and everyday customers can afford.</p>
 </section>
 
-<!-- Drink Series Section without Filter Buttons -->
+<!-- Drink Series -->
 <section class="section" id="menu" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px;">Drink Series</h2>
   <div class="slider" id="menu-slider">
@@ -385,7 +384,7 @@
   </div>
 </section>
 
-<!-- Food Series Section without Filter Buttons -->
+<!-- Food Series -->
 <section class="section" id="featured" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px;">Food Series</h2>
   <div class="slider" id="featured-slider">
@@ -430,30 +429,15 @@
  ">We offer affordable and complete packages to help you start smoothly.</p>
 </section>
 
-<!-- FRANCHISEES SECTION with SLIDER -->
+<!-- Franchisees -->
 <section class="section" id="franchisees" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px;">Branches</h2>
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
-      <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_TAGUIG" target="_blank">
-          <img src="SAMPLE.jpg" alt="Franchise 1">
-        </a>
-        <p class="caption">📍 Muñoz Branch – Growing Fast!</p>
-      </div>
-      <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_CEBU" target="_blank">
-          <img src="SAMPLE1.jpg" alt="Franchise 2">
-        </a>
-        <p class="caption">📍 Cebu Branch – Full House Daily!</p>
-      </div>
-      <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_DAVAO" target="_blank">
-          <img src="SAMPLE2.jpg" alt="Franchise 3">
-        </a>
-        <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
-      </div>
+      <div class="slide-item"><img src="SAMPLE.jpg" alt="Muñoz"><p class="caption">📍 Muñoz Branch</p></div>
+      <div class="slide-item"><img src="SAMPLE1.jpg" alt="Cebu"><p class="caption">📍 Cebu Branch</p></div>
+      <div class="slide-item"><img src="SAMPLE2.jpg" alt="Cebu"><p class="caption">📍 Cebu Branch</p></div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'franchise')">&#10095;</button>
   </div>
@@ -469,7 +453,7 @@
 
 <!-- Scripts -->
 <script>
-let slideIndex = {
+const slideIndex = {
   menu: 0,
   featured: 0,
   franchise: 0
@@ -477,32 +461,18 @@ let slideIndex = {
 
 function moveSlide(n, section) {
   const container = document.querySelector(`#${section}-slider .slides`);
-  const slides = Array.from(container.querySelectorAll('.slide-item')).filter(slide => slide.style.display !== 'none');
-
-  if (!slides.length) return;
+  const slides = container.querySelectorAll('.slide-item');
+  const slideCount = slides.length;
 
   slideIndex[section] += n;
-  if (slideIndex[section] < 0) slideIndex[section] = slides.length - 1;
-  if (slideIndex[section] >= slides.length) slideIndex[section] = 0;
+  if (slideIndex[section] < 0) slideIndex[section] = slideCount - 1;
+  if (slideIndex[section] >= slideCount) slideIndex[section] = 0;
 
-  // Remove "center" class from all, then add to current
-  slides.forEach(slide => slide.classList.remove('center'));
-  slides[slideIndex[section]].classList.add('center');
-
-  // Calculate position to center the current slide
-  const slideWidth = slides[0].offsetWidth + 20;
-  const offset = (container.offsetWidth / 2) - (slideWidth / 2);
-  const translateX = -(slideIndex[section] * slideWidth) + offset;
+  const slideWidth = container.querySelector('.slide-item').offsetWidth;
+  const translateX = -(slideIndex[section] * slideWidth);
   container.style.transform = `translateX(${translateX}px)`;
-
-  // Show/hide arrows
-  const arrows = document.querySelectorAll(`#${section}-slider .arrow`);
-  arrows.forEach(arrow => {
-    arrow.style.display = slides.length > 1 ? 'block' : 'none';
-  });
 }
 
-// Initialize all sliders on load
 ['menu', 'featured', 'franchise'].forEach(section => {
   moveSlide(0, section);
 
