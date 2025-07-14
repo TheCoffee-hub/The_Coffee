@@ -154,15 +154,12 @@
     }
 
     .slide-item {
-      flex: 0 0 100%;
+      display: flex;
       justify-content: center;
       align-items: center;
-      height: auto;
-      max-width: 100%;
+      padding: 10px;
+      height: auto; /* Or fixed kung gusto uniform size */
       box-sizing: border-box;
-      transform: scale(1);
-      opacity: 1;
-      padding: 0;
     }
     .slide-item.center {
       transform: scale(1.1);
@@ -171,9 +168,10 @@
     }
 
     .slide-item img {
-      width: 100%;
+      width: auto;
+      max-width: 100%;
       height: auto;
-      max-height: 400px;
+      max-height: 300px;
       object-fit: contain;
       border-radius: 10px;
     }
@@ -250,7 +248,6 @@
     @media (max-width: 768px) {
       .slide-item img {
         max-height: 250px;
-        object-fit: contain;
       }
     }
       .slide-item {
