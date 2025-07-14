@@ -144,7 +144,7 @@
       align-items: center;
       overflow: hidden;
       position: relative;
-      padding: 40px 20px;
+      padding: 40px 0;
     }
     .slides {
       display: flex;
@@ -152,7 +152,6 @@
       will-change: transform;
       scroll-snap-type: x mandatory;
       gap: 10px;
-      overflow: visible;
     }
     .slide-item {
       flex: 0 0 30%;
@@ -250,6 +249,10 @@
 
       .slide-item.center {
         transform: scale(1);
+      }
+
+      .slides {
+        gap: 10px;
       }
 
       .nav-links {
