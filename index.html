@@ -155,6 +155,9 @@
 
     .slide-item {
       flex: 0 0 100%;
+      justify-content: center;
+      align-items: center;
+      height: auto;
       max-width: 100%;
       box-sizing: border-box;
       transform: scale(1);
@@ -246,7 +249,8 @@
 
     @media (max-width: 768px) {
       .slide-item img {
-        max-height: 300px;
+        max-height: 250px;
+        object-fit: contain;
       }
     }
       .slide-item {
@@ -429,15 +433,30 @@
  ">We offer affordable and complete packages to help you start smoothly.</p>
 </section>
 
-<!-- Franchisees -->
-<section class="section" id="franchisees" data-aos="fade-up">
-  <h2 style="font-style: italic; font-size: 50px;">Branches</h2>
+<!-- FRANCHISEES SECTION with SLIDER -->
+<section class="section" id="franchisees">
+  <h2 style="font-style: italic; font-size: 50px; ">Our Franchisees</h2>
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
-      <div class="slide-item"><img src="SAMPLE.jpg" alt="Muñoz"><p class="caption">📍 Muñoz Branch</p></div>
-      <div class="slide-item"><img src="SAMPLE1.jpg" alt="Cebu"><p class="caption">📍 Cebu Branch</p></div>
-      <div class="slide-item"><img src="SAMPLE2.jpg" alt="Cebu"><p class="caption">📍 Cebu Branch</p></div>
+      <div class="slide-item">
+        <a href="https://www.facebook.com/YOUR_PAGE_TAGUIG" target="_blank">
+          <img src="SAMPLE.jpg" alt="Franchise 1">
+        </a>
+        <p class="caption">📍 Muñoz Branch – Growing Fast!</p>
+      </div>
+      <div class="slide-item">
+        <a href="https://www.facebook.com/YOUR_PAGE_CEBU" target="_blank">
+          <img src="SAMPLE1.jpg" alt="Franchise 2">
+        </a>
+        <p class="caption">📍 Cebu Branch – Full House Daily!</p>
+      </div>
+      <div class="slide-item">
+        <a href="https://www.facebook.com/YOUR_PAGE_DAVAO" target="_blank">
+          <img src="SAMPLE2.jpg" alt="Franchise 3">
+        </a>
+        <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
+      </div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'franchise')">&#10095;</button>
   </div>
