@@ -142,30 +142,40 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden; /* hide excess for mobile */
+      overflow: hidden;
       position: relative;
       padding: 40px 0;
     }
     .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      gap: 20px;
+      will-change: transform;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
     }
-
     .slide-item {
-      flex: 0 0 80%;
-      transform: scale(0.9);
-      opacity: 0.6;
+      flex: 0 0 30%;
+      max-width: 30%;
+      margin: 0 10px;
+      opacity: 0.5;
+      transform: scale(0.85);
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
     .slide-item.center {
-      transform: scale(1);
+      transform: scale(1.05);
       opacity: 1;
+      z-index: 2;
     }
 
+    .slide-item.center img {
+    width: 180px;
+  }
+
     .slide-item img {
-      max-width: 100%;
-      max-height: 200px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
 
     .slide-item img:hover {
@@ -233,9 +243,10 @@
     }
 
     @media (max-width: 768px) {
-      .slides {
-        gap: 10px;
-        padding: 0 10px;
+      .slide-item {
+        flex: 0 0 30%;
+        max-width: 30%;
+        margin: 0 10px;
       }
 
       .slide-item.center {
@@ -434,9 +445,9 @@
 <!-- Scripts -->
 <script>
 let slideIndex = {
-  menu: 0,
-  franchise: 0,
-  featured: 0
+  menu: 1,
+  featured: 1,
+  franchise: 1
 };
 
 function moveSlide(n, section) {
@@ -446,22 +457,17 @@ function moveSlide(n, section) {
 
   slideIndex[section] = (slideIndex[section] + n + total) % total;
 
-  // Reset all classes
-  slides.forEach(slide => {
-    slide.classList.remove('center');
-  });
-
-  // Assign center class
+  slides.forEach(slide => slide.classList.remove('center'));
   slides[slideIndex[section]].classList.add('center');
 
-  const slideWidth = slides[0].offsetWidth + 20; // includes gap
+  const slideWidth = slides[0].offsetWidth + 20;
   const centerOffset = (slider.offsetWidth / 2) - (slideWidth / 2);
   const translateX = -(slideIndex[section] * slideWidth) + centerOffset;
 
   slider.style.transform = `translateX(${translateX}px)`;
 }
 
-// Init sliders
+// Init all sliders
 ['menu', 'featured', 'franchise'].forEach(section => {
   moveSlide(0, section);
 
@@ -478,8 +484,10 @@ function moveSlide(n, section) {
     else if (startX - endX < -50) moveSlide(-1, section);
   });
 });
-
 </script>
+
+
+
 
 
   <footer>
