@@ -146,6 +146,14 @@
       position: relative;
       padding: 40px 0;
     }
+
+    .slider .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+      gap: 10px;
+    }
+
     .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
@@ -311,74 +319,74 @@
  ">The Coffee PH is a proudly homegrown beverage brand that blends local Filipino flavors with international coffeehouse quality — all at prices that students and everyday customers can afford.</p>
 </section>
 
-<!-- MENU SECTION with SLIDER -->
+<!-- Drink Series Section without Filter Buttons -->
 <section class="section" id="menu" data-aos="fade-up">
-  <h2 style="font-style: italic; font-size: 50px; ">Drink Series</h2>
+  <h2 style="font-style: italic; font-size: 50px;">Drink Series</h2>
   <div class="slider" id="menu-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'menu')">&#10094;</button>
     <div class="slides menu-slides">
-      <div class="slide-item">
+      <div class="slide-item" data-category="iced">
         <img src="iced coffee.jpg" alt="Iced Coffee">
         <p class="caption">❄️ Iced Coffee – Chill Out with Every Sip</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="hot">
         <img src="hot coffee.jpg" alt="Hot Coffee">
         <p class="caption">☕ Hot Coffee – Warm Your Day with Every Sip</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="milk">
         <img src="MILK TEA MENU.png" alt="Milk Tea">
         <p class="caption">🧋 Milk Tea Series – Creamy Goodness in Every Sip</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="fruit">
         <img src="FRUIT TEA MENU.png" alt="Fruit Tea">
-        <p class="caption">🧋 Fruit Tea – Creamy Goodness in Every Sip</p>
+        <p class="caption">🧋 Fruit Tea – Bursting with Fruity Flavors</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="latte">
         <img src="FRUIT MILK & LATTE MENU.png" alt="Fruit Milk & Latte">
-        <p class="caption">🧋 Fruit Milk & Latte – Creamy Goodness in Every Sip</p>
+        <p class="caption">🥛 Fruit Milk & Latte – Smooth and Sweet</p>
       </div>
-      <div class="slide-item">
-        <img src="CHEESECAKE MENU.png" alt="Fruit Milk & Latte">
-        <p class="caption">🧋 Fruit Milk & Latte – Creamy Goodness in Every Sip</p>
+      <div class="slide-item" data-category="latte">
+        <img src="CHEESECAKE MENU.png" alt="Cheesecake">
+        <p class="caption">🍰 Cheesecake Drinks – Rich and Creamy</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="milk">
         <img src="STICKY MILK MENU.png" alt="Sticky Milk">
-        <p class="caption">🧋 Sticky Milk – Creamy Goodness in Every Sip</p>
+        <p class="caption">🥛 Sticky Milk – Extra Thick, Extra Good</p>
       </div>
-      <div class="slide-item">
-        <img src="FRAPPE MENU.png" alt="Sticky Milk">
-        <p class="caption">🧋 Sticky Milk – Creamy Goodness in Every Sip</p>
+      <div class="slide-item" data-category="frappe">
+        <img src="FRAPPE MENU.png" alt="Frappe">
+        <p class="caption">🥤 Frappe – Frozen & Flavorful</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="soda">
         <img src="SODA MENU.png" alt="Soda">
-        <p class="caption">🧋 Soda – Creamy Goodness in Every Sip</p>
+        <p class="caption">🥤 Soda – Fizzy and Fun</p>
       </div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'menu')">&#10095;</button>
   </div>
 </section>
 
-<!-- NEW SLIDER SECTION -->
+<!-- Food Series Section without Filter Buttons -->
 <section class="section" id="featured" data-aos="fade-up">
-  <h2 style="font-style: italic; font-size: 50px; ">Food Series</h2>
+  <h2 style="font-style: italic; font-size: 50px;">Food Series</h2>
   <div class="slider" id="featured-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'featured')">&#10094;</button>
     <div class="slides featured-slides">
-      <div class="slide-item">
+      <div class="slide-item" data-category="sandwich">
         <img src="CROFFLE SANDWICH MENU.png" alt="Croffle Sandwich">
-        <p class="caption">🧋 Milk Tea Series – Creamy Goodness in Every Sip</p>
+        <p class="caption">🥪 Croffle Sandwich – Savory Meets Sweet</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="waffle">
         <img src="BUBBLE WAFFLE MENU.png" alt="Bubble Waffle">
-        <p class="caption">🧋 Bubble Waffle – Creamy Goodness in Every Sip</p>
+        <p class="caption">🧇 Bubble Waffle – Fun and Tasty</p>
       </div>
-      <div class="slide-item">
+      <div class="slide-item" data-category="fries">
         <img src="FRIES MENU.png" alt="Fries">
-        <p class="caption">🧋 Fries – Creamy Goodness in Every Sip</p>
+        <p class="caption">🍟 Fries – Crispy Comfort</p>
       </div>
-      <div class="slide-item">
-        <img src="CROFFLES MENU.png" alt="Fries">
-        <p class="caption">🧋 Fries – Creamy Goodness in Every Sip</p>
+      <div class="slide-item" data-category="waffle">
+        <img src="CROFFLES MENU.png" alt="Croffles">
+        <p class="caption">🧇 Croffles – Flaky, Buttery, Perfect</p>
       </div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'featured')">&#10095;</button>
@@ -443,50 +451,51 @@
 <!-- Scripts -->
 <script>
 let slideIndex = {
-  menu: 1,
-  featured: 1,
-  franchise: 1
+  menu: 0,
+  featured: 0
 };
 
 function moveSlide(n, section) {
-  const slides = document.querySelectorAll(`.${section}-slides .slide-item`);
-  const slider = document.querySelector(`.${section}-slides`);
-  const total = slides.length;
+  const container = document.querySelector(`#${section}-slider .slides`);
+  const slides = Array.from(container.querySelectorAll('.slide-item')).filter(slide => slide.style.display !== 'none');
 
-  slideIndex[section] = (slideIndex[section] + n + total) % total;
+  if (slides.length === 0) return;
+
+  slideIndex[section] += n;
+  if (slideIndex[section] < 0) slideIndex[section] = slides.length - 1;
+  if (slideIndex[section] >= slides.length) slideIndex[section] = 0;
 
   slides.forEach(slide => slide.classList.remove('center'));
   slides[slideIndex[section]].classList.add('center');
 
   const slideWidth = slides[0].offsetWidth + 20;
-  const centerOffset = (slider.offsetWidth / 2) - (slideWidth / 2);
-  const translateX = -(slideIndex[section] * slideWidth) + centerOffset;
+  const offset = (container.offsetWidth / 2) - (slideWidth / 2);
+  const translateX = -(slideIndex[section] * slideWidth) + offset;
+  container.style.transform = `translateX(${translateX}px)`;
 
-  slider.style.transform = `translateX(${translateX}px)`;
+  const arrows = document.querySelectorAll(`#${section}-slider .arrow`);
+  arrows.forEach(arrow => {
+    arrow.style.display = slides.length > 1 ? 'block' : 'none';
+  });
 }
 
-// Init all sliders
-['menu', 'featured', 'franchise'].forEach(section => {
+['menu', 'featured'].forEach(section => {
   moveSlide(0, section);
 
-  const slider = document.querySelector(`#${section}-slider .slides`);
+  const container = document.querySelector(`#${section}-slider .slides`);
   let startX = 0;
 
-  slider.addEventListener('touchstart', e => {
+  container.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
   });
 
-  slider.addEventListener('touchend', e => {
+  container.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
     if (startX - endX > 50) moveSlide(1, section);
     else if (startX - endX < -50) moveSlide(-1, section);
   });
 });
 </script>
-
-
-
-
 
   <footer>
     &copy;2024 The Coffee. All rights reserved.
@@ -513,6 +522,22 @@ function moveSlide(n, section) {
   </svg>
   <span style="color:white; font-weight:bold;">Message Us</span>
 </a>
+
+<script>
+function filterSlides(section, category) {
+  const allSlides = document.querySelectorAll(`#${section}-slider .slide-item`);
+  allSlides.forEach(slide => {
+    const slideCategory = slide.getAttribute('data-category');
+    if (category === 'all' || slideCategory === category) {
+      slide.style.display = 'block';
+    } else {
+      slide.style.display = 'none';
+    }
+  });
+  slideIndex[section] = 0;
+  moveSlide(0, section);
+}
+</script>
   
   <script>
   AOS.init();
