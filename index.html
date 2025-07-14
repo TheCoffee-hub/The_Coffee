@@ -171,9 +171,11 @@
     .slide-item img {
       width: 100%;
       height: auto;
-      max-height: 400px;
+      aspect-ratio: 3 / 4; /* or adjust to fit your image shape better */
       object-fit: contain;
       border-radius: 10px;
+      display: block;
+      margin: 0 auto;
     }
     .slide-item img:hover {
       transform: scale(1.05);
@@ -248,7 +250,8 @@
 
     @media (max-width: 768px) {
       .slide-item img {
-        max-height: 300px;
+        max-height: none; /* Remove any cropping */
+        aspect-ratio: 3 / 4; /* Keeps consistent shape */
       }
     }
       .slide-item {
