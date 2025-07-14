@@ -142,7 +142,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      overflow: visible;
       position: relative;
       padding: 40px 0;
     }
@@ -152,14 +152,7 @@
       transition: transform 0.5s ease-in-out;
       will-change: transform;
       gap: 10px;
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      will-change: transform;
-      scroll-snap-type: x mandatory;
-      gap: 10px;
+      padding: 0 5vw;
     }
 
     .slide-item {
@@ -172,7 +165,7 @@
     }
 
     .slide-item.center {
-      transform: scale(1);
+      transform: scale(1.1);
       opacity: 1;
       z-index: 2;
     }
@@ -180,7 +173,7 @@
     .slide-item img {
       width: 100%;
       height: auto;
-      max-height: 240px;
+      max-height: 300px;
       object-fit: contain;
       border-radius: 10px;
     }
@@ -250,31 +243,36 @@
     }
 
     @media (max-width: 768px) {
-      .slider {
-        padding: 20px 0;
-      }
-
       .slide-item {
         flex: 0 0 60%;
         max-width: 60%;
         margin: 0 5px;
         transform: scale(0.8);
-        transition: transform 0.4s ease, opacity 0.4s ease;
         opacity: 0.5;
       }
 
-      .slide-item.center {
-        transform: scale(1);
-        opacity: 1;
-        z-index: 2;
+    @media (max-width: 768px) {
+      .slider {
+        padding: 20px 0;
       }
 
-      .slide-item img {
-        max-height: 240px;
+      .slide-item {
+        flex: 0 0 70%;
+        max-width: 70%;
+        transform: scale(0.85);
+      }
+
+      .slide-item.center {
+        transform: scale(1.05);
       }
 
       .slides {
         gap: 10px;
+        padding: 0 5vw;
+      }
+
+      .slide-item img {
+        max-height: 240px;
       }
 
       .nav-links {
@@ -428,7 +426,7 @@
 
 <!-- FRANCHISEES SECTION with SLIDER -->
 <section class="section" id="franchisees" data-aos="fade-up">
-  <h2 style="font-style: italic; font-size: 50px; ">Branches</h2>
+  <h2 style="font-style: italic; font-size: 50px;">Branches</h2>
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
@@ -440,13 +438,13 @@
       </div>
       <div class="slide-item">
         <a href="https://www.facebook.com/YOUR_PAGE_CEBU" target="_blank">
-          <img src="franchise2.jpg" alt="Franchise 2">
+          <img src="SAMPLE1.jpg" alt="Franchise 2">
         </a>
         <p class="caption">📍 Cebu Branch – Full House Daily!</p>
       </div>
       <div class="slide-item">
         <a href="https://www.facebook.com/YOUR_PAGE_DAVAO" target="_blank">
-          <img src="franchise3.jpg" alt="Franchise 3">
+          <img src="SAMPLE2.jpg" alt="Franchise 3">
         </a>
         <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
       </div>
@@ -467,34 +465,39 @@
 <script>
 let slideIndex = {
   menu: 0,
-  featured: 0
+  featured: 0,
+  franchise: 0
 };
 
 function moveSlide(n, section) {
   const container = document.querySelector(`#${section}-slider .slides`);
   const slides = Array.from(container.querySelectorAll('.slide-item')).filter(slide => slide.style.display !== 'none');
 
-  if (slides.length === 0) return;
+  if (!slides.length) return;
 
   slideIndex[section] += n;
   if (slideIndex[section] < 0) slideIndex[section] = slides.length - 1;
   if (slideIndex[section] >= slides.length) slideIndex[section] = 0;
 
+  // Remove "center" class from all, then add to current
   slides.forEach(slide => slide.classList.remove('center'));
   slides[slideIndex[section]].classList.add('center');
 
+  // Calculate position to center the current slide
   const slideWidth = slides[0].offsetWidth + 20;
   const offset = (container.offsetWidth / 2) - (slideWidth / 2);
   const translateX = -(slideIndex[section] * slideWidth) + offset;
   container.style.transform = `translateX(${translateX}px)`;
 
+  // Show/hide arrows
   const arrows = document.querySelectorAll(`#${section}-slider .arrow`);
   arrows.forEach(arrow => {
     arrow.style.display = slides.length > 1 ? 'block' : 'none';
   });
 }
 
-['menu', 'featured'].forEach(section => {
+// Initialize all sliders on load
+['menu', 'featured', 'franchise'].forEach(section => {
   moveSlide(0, section);
 
   const container = document.querySelector(`#${section}-slider .slides`);
