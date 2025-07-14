@@ -65,13 +65,13 @@
     }
 
     #menu.section {
-      padding-bottom: 0;
+      padding-bottom: 10px;
       margin-bottom: 0;
     }
 
     #featured.section {
       padding-top: 0;
-      margin-top: -10px; /* optional: pwede mo i-tweak, try -10px or -20px */
+      margin-top: -30px; /* optional: pwede mo i-tweak, try -10px or -20px */
     }
 
 
@@ -141,32 +141,37 @@
     }
 
     .slider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible; /* allow side items to peek */
       position: relative;
-      max-width: 700px;
-      margin: 30px auto;
-      overflow: hidden;
-      border-radius: 10px;
+      padding: 40px 0;
     }
 
     .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      width: 100%;
-      touch-action: pan-y;
+      gap: 20px;
     }
 
     .slide-item {
-      min-width: 100%;
-      box-sizing: border-box;
-      text-align: center;
+      flex: 0 0 auto;
+      transform: scale(0.8);
+      opacity: 0.5;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .slide-item.center {
+      transform: scale(1.1);
+      opacity: 1;
+      z-index: 2;
     }
 
     .slide-item img {
-      width: 100%;
+      width: 300px;
       height: auto;
-      max-width: 450px;
-      display: block;
-      margin: auto;
+      border-radius: 10px;
       transition: transform 0.3s ease;
     }
 
@@ -235,8 +240,8 @@
     }
 
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+      .slide-item img {
+        width: 200px;
       }
 
       .nav-links {
@@ -424,51 +429,61 @@
 
 <section class="section" id="contact" data-aos="fade-up">
   <h2 style="font-style: italic; font-size: 50px; ">Contact Us</h2>
-  <p>📍331 Fernando Poe Jr. Quezon City</p>
+  <p>📍Unit 5, 331 Fernando Poe Jr. Quezon City</p>
   <p>📞 0962-314-2834 | 0994-889-0169 | 0997-098-3993</p>
   <p>📩 themilktea.coffee@gmail.com</p>
 </section>
 
 <!-- Scripts -->
 <script>
-  // Toggle dropdown menu on mobile
-  function toggleMenu() {
-    const menu = document.getElementById("navMenu");
-    menu.classList.toggle("show");
-  }
+let slideIndex = {
+  menu: 0,
+  franchise: 0,
+  featured: 0
+};
 
-  // Slider logic
-  let slideIndex = {
-    menu: 0,
-    franchise: 0,
-    featured: 0
-  };
+function moveSlide(n, section) {
+  const slides = document.querySelectorAll(`.${section}-slides .slide-item`);
+  const slider = document.querySelector(`.${section}-slides`);
+  const total = slides.length;
 
-  function moveSlide(n, section) {
-    const slides = document.querySelectorAll(`.${section}-slides .slide-item`);
-    slideIndex[section] = (slideIndex[section] + n + slides.length) % slides.length;
-    document.querySelector(`.${section}-slides`).style.transform = `translateX(-${slideIndex[section] * 100}%)`;
-  }
+  slideIndex[section] = (slideIndex[section] + n + total) % total;
 
-  ['menu', 'franchise', 'featured'].forEach(section => {
-    const slider = document.querySelector(`#${section}-slider .slides`);
-    let startX = 0;
-
-    slider.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener('touchend', e => {
-      let endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) moveSlide(1, section);
-      if (startX - endX < -50) moveSlide(-1, section);
-    });
+  // Reset all classes
+  slides.forEach(slide => {
+    slide.classList.remove('center');
   });
 
-  moveSlide(0, 'menu');
-  moveSlide(0, 'franchise');
-  moveSlide(0, 'featured');
+  // Assign center class
+  slides[slideIndex[section]].classList.add('center');
+
+  const slideWidth = slides[0].offsetWidth + 20; // includes gap
+  const centerOffset = (slider.offsetWidth / 2) - (slideWidth / 2);
+  const translateX = -(slideIndex[section] * slideWidth) + centerOffset;
+
+  slider.style.transform = `translateX(${translateX}px)`;
+}
+
+// Init sliders
+['menu', 'featured', 'franchise'].forEach(section => {
+  moveSlide(0, section);
+
+  const slider = document.querySelector(`#${section}-slider .slides`);
+  let startX = 0;
+
+  slider.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) moveSlide(1, section);
+    else if (startX - endX < -50) moveSlide(-1, section);
+  });
+});
+
 </script>
+
 
   <footer>
     &copy;2024 The Coffee. All rights reserved.
