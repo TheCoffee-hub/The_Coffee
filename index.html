@@ -161,17 +161,15 @@
       scroll-snap-type: x mandatory;
       gap: 10px;
     }
-    .slide-item {
-      flex: 0 0 30%;
-      max-width: 30%;
-      margin: 0 10px;
-      opacity: 0.5;
-      transform: scale(0.8);
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
+     .slide-item {
+        flex: 0 0 80%;
+        max-width: 80%;
+        margin: 0 auto;
+        transform: scale(0.9);
+      }
 
     .slide-item.center {
-      transform: scale(1.15);
+      transform: scale(1);
       opacity: 1;
       z-index: 2;
     }
@@ -179,8 +177,8 @@
     .slide-item img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
+      max-height: 250px;
+      object-fit: contain;
     }
 
     .slide-item img:hover {
@@ -249,10 +247,9 @@
 
     @media (max-width: 768px) {
       .slide-item {
-        flex: 0 0 60%;
-        max-width: 60%;
-        margin: 0 10px;
-        transform: scale(0.7);
+        flex: 0 0 80%;
+        max-width: 80%;
+        transform: scale(0.9);
       }
 
       .slide-item.center {
@@ -261,6 +258,7 @@
 
       .slides {
         gap: 10px;
+        padding: 20px 0;
       }
 
       .nav-links {
@@ -380,13 +378,13 @@
         <img src="BUBBLE WAFFLE MENU.png" alt="Bubble Waffle">
         <p class="caption">🧇 Bubble Waffle – Fun and Tasty</p>
       </div>
-      <div class="slide-item" data-category="fries">
-        <img src="FRIES MENU.png" alt="Fries">
-        <p class="caption">🍟 Fries – Crispy Comfort</p>
-      </div>
       <div class="slide-item" data-category="waffle">
         <img src="CROFFLES MENU.png" alt="Croffles">
         <p class="caption">🧇 Croffles – Flaky, Buttery, Perfect</p>
+      </div>
+      <div class="slide-item" data-category="fries">
+        <img src="FRIES MENU.png" alt="Fries">
+        <p class="caption">🍟 Fries – Crispy Comfort</p>
       </div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'featured')">&#10095;</button>
