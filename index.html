@@ -77,6 +77,7 @@
       display: flex;
       gap: 15px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .nav-links a {
@@ -154,13 +155,17 @@
     }
 
     .slide-item {
-      flex: 0 0 100%;
-      max-width: 100%;
-      padding: 0 10px;
-      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex: 0 0 80%;
+      max-width: 80%;
+      margin: 0 auto;
+      transform: scale(1);
+      opacity: 1;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
     .slide-item.center {
       transform: scale(1.1);
@@ -171,8 +176,8 @@
     .slide-item img {
       width: 100%;
       height: auto;
-      aspect-ratio: 3 / 4; /* or adjust to fit your image shape better */
       object-fit: contain;
+      aspect-ratio: 3 / 4;
       border-radius: 10px;
       display: block;
       margin: 0 auto;
@@ -244,21 +249,30 @@
 
     @media (max-width: 768px) {
       .slide-item {
-        flex: 0 0 90%;
-        max-width: 90%;
+        flex: 0 0 100%;
+        max-width: 100%;
       }
 
-    @media (max-width: 768px) {
       .slide-item img {
-        max-height: none; /* Remove any cropping */
-        aspect-ratio: 3 / 4; /* Keeps consistent shape */
+        aspect-ratio: 3 / 4;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width:100%;
+        margin-top: 10px;        
+      }
+
+      .nav-links.show {
+        display: flex;
       }
     }
       .slide-item {
-        flex: 0 0 100%;
-        max-width: 100%;
-        transform: scale(1);
-        opacity: 1;
+        flex: 0 0 80%;
+        max-width: 80%;
+        margin: 0 auto;
         transition: transform 0.4s ease, opacity 0.4s ease;
         padding: 0 10px;
         box-sizing: border-box;
@@ -280,11 +294,12 @@
       .slide-item img {
         width: 100%;
         height: auto;
-        max-height: 400px;
-        object-fit: cover;
+        aspect-ratio: 3 / 4;
+        object-fit: contain;
         border-radius: 10px;
+        display: block;
+        margin: 0 auto;
       }
-
       .nav-links {
         display: none;
         flex-direction: column;
@@ -435,28 +450,22 @@
 </section>
 
 <!-- FRANCHISEES SECTION with SLIDER -->
-<section class="section" id="franchisees">
-  <h2 style="font-style: italic; font-size: 50px; ">Our Franchisees</h2>
+<section class="section" id="franchisees" data-aos="fade-up">
+  <h2 style="font-style: italic; font-size: 50px;">Branches</h2>
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
       <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_TAGUIG" target="_blank">
-          <img src="SAMPLE.jpg" alt="Franchise 1">
-        </a>
-        <p class="caption">📍 Muñoz Branch – Growing Fast!</p>
+        <img src="SAMPLE.jpg" alt="Muñoz">
+        <p class="caption">📍 Muñoz Branch</p>
       </div>
       <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_CEBU" target="_blank">
-          <img src="SAMPLE1.jpg" alt="Franchise 2">
-        </a>
-        <p class="caption">📍 Cebu Branch – Full House Daily!</p>
+        <img src="SAMPLE1.jpg" alt="Cebu">
+        <p class="caption">📍 Cebu Branch</p>
       </div>
       <div class="slide-item">
-        <a href="https://www.facebook.com/YOUR_PAGE_DAVAO" target="_blank">
-          <img src="SAMPLE2.jpg" alt="Franchise 3">
-        </a>
-        <p class="caption">📍 Davao Branch – Our Southern Gem!</p>
+        <img src="SAMPLE2.jpg" alt="Cebu">
+        <p class="caption">📍 Cebu Branch</p>
       </div>
     </div>
     <button class="arrow right" onclick="moveSlide(1, 'franchise')">&#10095;</button>
