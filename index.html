@@ -451,9 +451,28 @@
 </section>
 
 <section class="section" id="inquire" data-aos="fade-up">
-  <h2 style="font-style: italic; font-size: 50px; ">Inquire About Franchise</h2>
-  <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
- ">We’re excited to grow with passionate partners! Reach out to explore how you can start your own Sweet Sip branch.</p>
+  <h2 style="font-style: italic; font-size: 50px;">Inquire About Franchise</h2>
+  <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;">
+    We’re excited to grow with passionate partners! Reach out to explore how you can start your own Sweet Sip branch.
+  </p>
+  <div class="slider" id="inquire-slider">
+    <button class="arrow left" onclick="moveSlide(-1, 'inquire')">&#10094;</button>
+    <div class="slides inquire-slides">
+      <div class="slide-item">
+        <img src="Franchise1.png" alt="Photo 1">
+      </div>
+      <div class="slide-item">
+        <img src="Franchise2.png" alt="Photo 2">
+      </div>
+      <div class="slide-item">
+        <img src="Franchise3.png" alt="Photo 3">
+      </div>
+      <div class="slide-item">
+        <img src="Franchise4.png" alt="Photo 3">
+      </div>
+    </div>
+    <button class="arrow right" onclick="moveSlide(1, 'inquire')">&#10095;</button>
+  </div>
 </section>
 
 <section class="section" id="package" data-aos="fade-up">
@@ -498,7 +517,8 @@
 const slideIndex = {
   menu: 0,
   featured: 0,
-  franchise: 0
+  franchise: 0,
+  inquire: 0
 };
 
 function moveSlide(n, section) {
@@ -515,9 +535,8 @@ function moveSlide(n, section) {
   container.style.transform = `translateX(${translateX}px)`;
 }
 
-['menu', 'featured', 'franchise'].forEach(section => {
+['menu', 'featured', 'franchise', 'inquire'].forEach(section => {
   moveSlide(0, section);
-
   const container = document.querySelector(`#${section}-slider .slides`);
   let startX = 0;
 
@@ -531,6 +550,7 @@ function moveSlide(n, section) {
     else if (startX - endX < -50) moveSlide(-1, section);
   });
 });
+
 </script>
 
   <footer>
