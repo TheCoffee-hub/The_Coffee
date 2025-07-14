@@ -37,12 +37,11 @@
       border-radius: 5px;
     }
 
-      .nav-links a.active {
-    background-color: #fff;
-    color: #c78752;
-    border-radius: 5px;
+    .nav-links a.active {
+      background-color: #fff;
+      color: #c78752;
+      border-radius: 5px;
     }
-
 
     .navbar {
       display: flex;
@@ -71,9 +70,8 @@
 
     #featured.section {
       padding-top: 0;
-      margin-top: -30px; /* optional: pwede mo i-tweak, try -10px or -20px */
+      margin-top: -30px;
     }
-
 
     .nav-links {
       display: flex;
@@ -144,7 +142,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: visible; /* allow side items to peek */
+      overflow: visible;
       position: relative;
       padding: 40px 0;
     }
@@ -173,6 +171,7 @@
       height: auto;
       border-radius: 10px;
       transition: transform 0.3s ease;
+      max-height: 300px;
     }
 
     .slide-item img:hover {
@@ -241,8 +240,18 @@
 
     @media (max-width: 768px) {
       .slide-item img {
-        width: 180px;
+        width: 160px;
         height: auto;
+        max-height: 200px;
+        object-fit: contain;
+      }
+
+      .slide-item.center {
+        transform: scale(1.05);
+      }
+
+      .slides {
+        gap: 10px;
       }
 
       .nav-links {
@@ -259,15 +268,10 @@
       .nav-links a {
         padding: 10px 0;
       }
-
-      .slide-item img {
-        width: 100%;
-        max-width: 100%;
-        object-fit: contain;
-      }
     }
   </style>
 </head>
+
 <body>
   <div class="preloader">
     <div class="loader"></div>
