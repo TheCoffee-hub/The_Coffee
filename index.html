@@ -185,10 +185,27 @@
       transform: scale(1.05);
     }
 
+    #franchise-slider .slide-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+    }
+
     #franchise-slider .slide-item img {
-      height: 100%; /* o kahit anong gusto mong size */
+      height: 500px; /* or any fixed height you want */
       width: 100%;
       object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    #franchise-slider .caption {
+      max-width: 90%;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.4;
+      margin-top: 8px;
+      word-wrap: break-word;
     }
 
     .caption {
