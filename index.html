@@ -527,6 +527,14 @@
   <h2 style="font-style: italic; font-size: 50px; ">Franchise Package</h2>
   <p style="text-align: justify; font-family: 'Quicksand', sans-serif; font-size: 20px;
  ">We offer affordable and complete packages to help you start smoothly.</p>
+
+ <div class="slider" id="inquire-slider">
+    <button class="arrow left" onclick="moveSlide(-1, 'inquire')">&#10094;</button>
+    <div class="slides inquire-slides">
+      <div class="slide-item">
+        <img src="F.jpg" alt="Photo 1">
+      </div>
+  </div>
 </section>
 
 <!-- FRANCHISEES SECTION with SLIDER -->
@@ -535,6 +543,16 @@
   <div class="slider" id="franchise-slider">
     <button class="arrow left" onclick="moveSlide(-1, 'franchise')">&#10094;</button>
     <div class="slides franchise-slides">
+      <div class="slide-item">
+        <img src="The Coffee Logo.png" alt="Muñoz">
+        <p class="caption">
+           <a href="https://www.facebook.com/yourbranchpage" target="_blank"
+             style="color: inherit; text-decoration: underline; font-weight: bold;">
+            Muñoz Branch
+          </a>
+        </p>
+        <p class="caption">📍 Unit 5, 331 Fernando Poe Jr. Quezon City</p>
+      </div>
       <div class="slide-item">
         <img src="The Coffee - Iligan Branch.jpg" alt="Iligan">
         <p class="caption">
@@ -695,8 +713,27 @@
         </p>
         <p class="caption">📍24 Baesa Rd Quezon City</p>
       </div>
+      <div class="slide-item">
+        <img src="The Coffee Logo.png" alt="Bacoor">
+        <p class="caption">
+           <a href="https://www.facebook.com/share/16yMxYsASi/" target="_blank"
+             style="color: inherit; text-decoration: underline; font-weight: bold;">
+             Bacoor Branch
+          </a>
+        </p>
+        <p class="caption">📍Brgy. Poblacion, Evangelista Rd. City of Bacoor</p>
+      </div>
+      <div class="slide-item">
+        <img src="The Coffee Logo.png" alt="Sta Maria">
+        <p class="caption">
+           <a href="https://www.facebook.com/share/16NNHpBaTZ/" target="_blank"
+             style="color: inherit; text-decoration: underline; font-weight: bold;">
+             Bulacan Branch
+          </a>
+        </p>
+        <p class="caption">📍Halili arcade Morales St., Poblacion, Sta Maria, Bulacan</p>
+      </div>
     </div>
-    
     <button class="arrow right" onclick="moveSlide(1, 'franchise')">&#10095;</button>
   </div>
 </section>
@@ -908,6 +945,3 @@ function filterSlides(section, category) {
 
 </body>
 </html>
-
-
-
